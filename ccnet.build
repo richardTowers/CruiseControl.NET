@@ -9,6 +9,8 @@
 	<property name="build.project"			 overwrite="false"	value="ccnet.sln" />
 	<property name="build.target.framework.is-mono" value="${framework::get-family(nant.settings.currentframework) == 'mono'}" />
 	<property name="build.target.framework"  overwrite="false"	value="4.5"  />
+	<!-- Hack: mono-4.5 is not a valid framework version (yet?) -->
+	<property name="build.target.framework" if="${build.target.framework.is-mono}" value="4.0" />
 	<property name="CCNetLabel"				 overwrite="false"	value="0.0.0.0" />
 	<property name="codemetrics.output.type" overwrite="false"	value="XmlFile" />
 
