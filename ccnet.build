@@ -7,6 +7,7 @@
 	<property name="build.configuration"	 overwrite="false"	value="Build" />
 	<property name="build.target"			 overwrite="false"	value="Build" />
 	<property name="build.project"			 overwrite="false"	value="ccnet.sln" />
+	<property name="build.target.framework.is-mono" value="${framework::get-family(nant.settings.currentframework) == 'mono'}" />
 	<property name="build.target.framework"  overwrite="false"	value="4.5"  />
 	<property name="CCNetLabel"				 overwrite="false"	value="0.0.0.0" />
 	<property name="codemetrics.output.type" overwrite="false"	value="XmlFile" />
@@ -119,12 +120,12 @@
 
 			<!-- Microsoft.JScript was deprecated and removed in mono in 2010 -->
 			<!-- https://github.com/mono/mono/commit/2d66a50bc6df7497e1426d693395906d31f0e490 -->
-			<property name="DISABLE_JSCRIPT" value="${framework::get-family(nant.settings.currentframework) == 'mono'}" />
+			<property name="DISABLE_JSCRIPT" value="${build.target.framework.is-mono}" />
 
 			<!-- Hack for current xbuild issues on Mono 2.5 -->
 			<environment>
-				<variable name="MONO_IOMAP" value="all" if="${framework::get-family(nant.settings.currentframework) == 'mono'}" />
-				<variable name="MONO_PATH" value="${path::get-full-path('lib')}" if="${framework::get-family(nant.settings.currentframework) == 'mono'}" />
+				<variable name="MONO_IOMAP" value="all" if="${build.target.framework.is-mono}" />
+				<variable name="MONO_PATH" value="${path::get-full-path('lib')}" if="${build.target.framework.is-mono}" />
 			</environment>
 		</msbuild>
 
@@ -141,7 +142,7 @@
 		<loadtasks assembly="${nauckit.nant.assembly}" />
 
 		<!-- Hack to copy all required files into the UnitTest dictionary until xbuild on Mono 2.5 is fixed -->
-		<if test="${framework::get-family(nant.settings.currentframework) == 'mono'}">
+		<if test="${build.target.framework.is-mono}">
 			<copy todir ="${path::combine(build.dir, 'UnitTests')}" overwrite="true" verbose="${nant.verbosity}">
 				<fileset basedir="${path::combine(build.dir, 'CCTray')}" failonempty="true">
 					<include name="*/**" />
@@ -203,7 +204,7 @@
 
 			
 			<environment>
-				<variable name="MONO_PATH" value="${path::get-full-path('lib')}" if="${framework::get-family(nant.settings.currentframework) == 'mono'}" />
+				<variable name="MONO_PATH" value="${path::get-full-path('lib')}" if="${build.target.framework.is-mono}" />
 			</environment>
 		</nunitTest>
 -->
