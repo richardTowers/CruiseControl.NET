@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{CBB2F759-46EB-42DB-BCAD-D7E596A4BC41}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -73,20 +73,7 @@
     <StartupObject>Validator.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharpFormat, Version=2.5.3274.32716, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\CSharpFormat.dll</HintPath>
-    </Reference>
-    <Reference Include="NetReflector, Version=1.1.2009.1214, Culture=neutral, PublicKeyToken=2f4dd8b32acbcd8e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NetReflector.dll</HintPath>
-    </Reference>
-    <Reference Include="ScintillaNet, Version=2.0.3138.25704, Culture=neutral, PublicKeyToken=948d6c9751444115, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\ScintillaNet.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -94,6 +81,16 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="CSharpFormat">
+      <HintPath>..\..\lib\CSharpFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="NetReflector">
+      <HintPath>..\..\lib\NetReflector.dll</HintPath>
+    </Reference>
+    <Reference Include="ScintillaNet">
+      <HintPath>..\..\lib\ScintillaNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
@@ -195,7 +192,7 @@
   <ItemGroup>
     <ProjectReference Include="..\core\core.csproj">
       <Project>{F8113DB9-6C47-4FD1-8A01-655FCF151747}</Project>
-      <Name>core %28CruiseControl.Net\Core\core%29</Name>
+      <Name>core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Remote\Remote.csproj">
       <Project>{E820CF3B-8C5A-4002-BC16-B7818D3D54A8}</Project>
