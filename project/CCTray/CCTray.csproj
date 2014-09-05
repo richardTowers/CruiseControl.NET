@@ -186,7 +186,7 @@
       copy "$(ProjectDir)..\..\tools\cm17a\cm17a.exe" "$(TargetDir)"
     </PostBuildEvent>
     <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">
-      cp "$(ProjectDir)../../tools/cm17a/cm17a.exe" "$(TargetDir)"
+      cp "$(ProjectDir)../../Tools/cm17a/cm17a.exe" "$(TargetDir)"
     </PostBuildEvent>
   </PropertyGroup>
 </Project>
