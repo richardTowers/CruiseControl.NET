@@ -1464,7 +1464,7 @@ copy "$(ProjectDir)..\..\tools\sleeper.exe" "$(TargetDir)"</PreBuildEvent>
 cp "$(ProjectDir)test.config" "$(TargetPath).config"
 cp -R "$(SolutionDir)xsl/" "$(TargetDir)xsl"
 cp -R "$(ProjectDir)resources/" "$(TargetDir)"
-cp "$(ProjectDir)../../tools/sleeper.exe" "$(TargetDir)"</PreBuildEvent>
+cp "$(ProjectDir)../../Tools/sleeper.exe" "$(TargetDir)"</PreBuildEvent>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
