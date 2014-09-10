@@ -1217,7 +1217,7 @@
     </PreBuildEvent>
     <PostBuildEvent Condition=" '$(OS)' != 'Unix' ">mkdir "$(TargetDir)xsl"
 xcopy /q /y "$(SolutionDir)\xsl\*.*" "$(TargetDir)xsl"</PostBuildEvent>
-    <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">mkdir "$(TargetDir)xsl"
-cp -R "$(SolutionDir)xsl/" "$(TargetDir)xsl"</PostBuildEvent>
+    <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">mkdir -p "$(TargetDir)xsl"
+cp "$(SolutionDir)xsl"/* "$(TargetDir)xsl"</PostBuildEvent>
   </PropertyGroup>
 </Project>
