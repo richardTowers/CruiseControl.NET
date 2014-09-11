@@ -113,6 +113,31 @@
                 "children:[{id:'" + snapshot.ChildItems[0].Identifier.ToString() + "',name:'child',status:'Cancelled'}]}";
             Assert.AreEqual(expected, actual.ResponseFragment);
         }
+
+        [Test]
+        public void ExecuteGeneratesEventStreamForEventStream()
+        {
+            var farmService = this.mocks.StrictMock<IFarmService>();
+            var cruiseRequest = this.mocks.StrictMock<ICruiseRequest>();
+            var projectSpec = this.mocks.StrictMock<IProjectSpecifier>();
+            var request = this.mocks.StrictMock<IRequest>();
+            var snapshot = this.GenerateSnapshot();
+            SetupResult.For(cruiseRequest.ProjectSpecifier).Return(projectSpec);
+            SetupResult.For(cruiseRequest.RetrieveSessionToken()).Return(null);
+            SetupResult.For(cruiseRequest.Request).Return(request);
+            SetupResult.For(request.GetText("view")).Return("event-stream");
+            SetupResult.For(farmService.TakeStatusSnapshot(projectSpec, null)).Return(snapshot);
+
+            this.mocks.ReplayAll();
+            
+            var plugin = new ProjectStatusAction(farmService);
+
+            var response = plugin.Execute(cruiseRequest);
+
+            this.mocks.VerifyAll();
+
+            Assert.IsInstanceOf<EventStreamResponse>(response);
+        }
         #endregion
 
         #region Helper methods

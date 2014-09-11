@@ -35,7 +35,8 @@ namespace ThoughtWorks.CruiseControl.WebDashboard.Plugins.ProjectReport
         {
             // Retrieve the actual snapshot
             var projectSpecifier = cruiseRequest.ProjectSpecifier;
-            var snapshot = farmServer.TakeStatusSnapshot(projectSpecifier, cruiseRequest.RetrieveSessionToken());
+            var sessionToken = cruiseRequest.RetrieveSessionToken();
+            var snapshot = farmServer.TakeStatusSnapshot(projectSpecifier, sessionToken);
 
             // See what type of output is required
             IResponse output = null;
@@ -46,6 +47,9 @@ namespace ThoughtWorks.CruiseControl.WebDashboard.Plugins.ProjectReport
                     // Generate the output as JSON
                     var json = this.ConvertStatusToJson(snapshot);
                     output = new JsonFragmentResponse(json);
+                    break;
+                case "event-stream":
+                    output = new EventStreamResponse(() => this.ConvertStatusToJson(farmServer.TakeStatusSnapshot(projectSpecifier, sessionToken)));
                     break;
                 default:
                     // Default output is XML

@@ -215,6 +215,7 @@
     <Compile Include="Dashboard\ProjectParametersAction.cs" />
     <Compile Include="Dashboard\IndicatorBarLocation.cs" />
     <Compile Include="IO\ProgramDataFolder.cs" />
+    <Compile Include="MVC\EventStreamResponse.cs" />
     <Compile Include="Plugins\Administration\AdministerAction.cs" />
     <Compile Include="Plugins\Administration\AdministerPlugin.cs" />
     <Compile Include="Plugins\Administration\ConfigurationAttribute.cs" />
@@ -954,6 +955,6 @@ xcopy/y/q "$(SolutionDir)\xsl\*.xsl" "$(ProjectDir)\xsl"</PostBuildEvent>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
-  </ProjectExtensions>  
+  </ProjectExtensions>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
 </Project>

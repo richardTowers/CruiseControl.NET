@@ -10,6 +10,7 @@ namespace ThoughtWorks.CruiseControl.WebDashboard.MVC
         public static readonly MimeType Json = new MimeType("application/json", "json");
         public static readonly MimeType Html = new MimeType("text/html", "html", "htm");
         public static readonly MimeType Xhtml = new MimeType("application/xhtml+xml", "xhtml");
+        public static readonly MimeType EventStream = new MimeType("text/event-stream");
 
 		private List<string> mimeExtension;
 		private string mimeType;
