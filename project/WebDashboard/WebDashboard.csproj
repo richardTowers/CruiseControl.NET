@@ -215,6 +215,7 @@
     <Compile Include="Dashboard\ProjectParametersAction.cs" />
     <Compile Include="Dashboard\IndicatorBarLocation.cs" />
     <Compile Include="IO\ProgramDataFolder.cs" />
+    <Compile Include="MVC\ASPNET\ReadonlySessionStateHttpHandler.cs" />
     <Compile Include="MVC\EventStreamResponse.cs" />
     <Compile Include="Plugins\Administration\AdministerAction.cs" />
     <Compile Include="Plugins\Administration\AdministerPlugin.cs" />
