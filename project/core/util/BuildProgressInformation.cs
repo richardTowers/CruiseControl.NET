@@ -3,6 +3,7 @@ using System;
 using System.Text;
 using System.IO;
 using System.Globalization;
+using System.Xml;
 
 namespace ThoughtWorks.CruiseControl.Core.Util
 {
@@ -168,19 +169,20 @@ namespace ThoughtWorks.CruiseControl.Core.Util
 
         private string GetQueueDataAsXml()
         {
-            System.Text.StringBuilder listenData = new StringBuilder();
-
-            listenData.AppendLine("<data>");
-            
-            foreach( BuildProgressInformationData bpi in Progress)
+            using (var stringWriter = new StringWriter())
+            using (var writer = new XmlTextWriter(stringWriter))
             {
-                listenData.AppendLine(
-                    string.Format(System.Globalization.CultureInfo.CurrentCulture,"<Item Time=\"{0}\" Data=\"{1}\" />", bpi.At ?? string.Empty, bpi.Information ?? string.Empty));
+                writer.WriteStartElement("data");
+                foreach (var bpi in Progress)
+                {
+                    writer.WriteStartElement("Item");
+                    writer.WriteAttributeString("Time", bpi.At ?? string.Empty);
+                    writer.WriteAttributeString("Data", bpi.Information ?? string.Empty);
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+                return stringWriter.ToString();
             }
-
-            listenData.AppendLine("</data>");
-
-            return listenData.ToString();
         }
 
 
@@ -198,18 +200,13 @@ namespace ThoughtWorks.CruiseControl.Core.Util
 
         public string Information
         {
-            get { return CleanUpMessageForXMLLogging(information); }
+            get { return information; }
         }
 
         public BuildProgressInformationData(string info)
         {
             at = DateTime.Now;
             information = info;
-        }
-
-        private string CleanUpMessageForXMLLogging(string msg)
-        {
-            return msg.Replace("\"", string.Empty);
         }
     }
 

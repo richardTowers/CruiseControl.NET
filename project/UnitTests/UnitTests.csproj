@@ -415,6 +415,7 @@
     <Compile Include="Core\Triggers\CronTriggerTest.cs" />
     <Compile Include="Core\Triggers\ParameterTriggerTests.cs" />
     <Compile Include="Core\Triggers\RollUpTriggerTest.cs" />
+    <Compile Include="Core\Util\BuildProgressInformationTests.cs" />
     <Compile Include="Core\Util\InstanceAssert.cs" />
     <Compile Include="Core\Util\PrivateArgumentsTests.cs" />
     <Compile Include="Core\Util\PrivateStringSerialiserTests.cs" />
