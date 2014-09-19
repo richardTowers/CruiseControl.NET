@@ -17,7 +17,7 @@ namespace ThoughtWorks.CruiseControl.WebDashboard.MVC
         private readonly Func<string> _getCurrentResponse;
 
         private readonly TimeSpan _pollInterval = TimeSpan.FromSeconds(1);
-        private readonly TimeSpan _maxRequestTime = TimeSpan.FromMinutes(2);
+        private readonly TimeSpan _maxRequestTime = TimeSpan.FromHours(1);
 
         /// <param name="getCurrentResponse">
         /// A delegate to get the current response. 
