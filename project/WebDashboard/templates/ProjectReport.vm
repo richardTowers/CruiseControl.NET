@@ -92,13 +92,13 @@
 			<th>$translations.Translate("Activity")</th>
 			<td>$translations.Translate($status.Activity.ToString())</td>
 		  </tr>
-		  #if ($status.BuildStage.Length > 0)
 		  <tr>
-		    <td colspan="2">
+        <td colspan="2" id="build-stage">
+        #if ($status.BuildStage.Length > 0)
 		        $translations.FormatBuildStage($status.BuildStage)
+        #end
 		    </td>
-		  </tr>
-		  #end
+      </tr>
 		  <tr>
 		    <td colspan="2">
 		          <form method="POST">

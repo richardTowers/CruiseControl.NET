@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Xml.Linq;
 using System.Collections;
 using System.Web;
 using Exortech.NetReflector;
@@ -16,6 +18,7 @@ using ThoughtWorks.CruiseControl.Remote;
 using ThoughtWorks.CruiseControl.WebDashboard.Configuration;
 using System.Collections.Generic;
 using ThoughtWorks.CruiseControl.WebDashboard.Resources;
+using System.Text.RegularExpressions;
 
 namespace ThoughtWorks.CruiseControl.WebDashboard.Plugins.ProjectReport
 {
@@ -88,6 +91,31 @@ namespace ThoughtWorks.CruiseControl.WebDashboard.Plugins.ProjectReport
             velocityContext["StatusMessage"] = ForceBuildIfNecessary(projectSpecifier, cruiseRequest.Request, sessionToken);
             ProjectStatus status = FindProjectStatus(projectSpecifier, cruiseRequest);
             velocityContext["status"] = status;
+
+            if (cruiseRequest.Request.GetText("view") == "event-stream")
+            {
+                return new EventStreamResponse(() =>
+                {
+                    var projectStatus = FindProjectStatus(projectSpecifier, cruiseRequest);
+
+                    if (string.IsNullOrEmpty(projectStatus.BuildStage))
+                    {
+                        return string.Empty;
+                    }
+
+                    // BuildStage is an XML string:
+                    var xmlBuildStage = XElement.Parse(projectStatus.BuildStage);
+
+                    var data =
+                        from element in xmlBuildStage.Elements("Item")
+                        select
+                            "data: {\"time\":\"" + element.Attribute("Time").Value + "\"," +
+                            "\"data\":\"" + element.Attribute("Data").Value + "\"}";
+
+                    return string.Join("\n", data);
+                });
+            }
+
             velocityContext["StartStopButtonName"] = (status.Status == ProjectIntegratorState.Running) ? "StopBuild" : "StartBuild"; 
             velocityContext["StartStopButtonValue"] = (status.Status == ProjectIntegratorState.Running) ? "Stop" : "Start";
             velocityContext["ForceAbortBuildButtonName"] = (status.Activity.IsSleeping() ? "ForceBuild" : "AbortBuild");
