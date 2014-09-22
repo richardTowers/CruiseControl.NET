@@ -22,12 +22,18 @@ $(function () {
         var eventSource = new EventSource("ViewProjectReport.ashx?view=event-stream");
 
         eventSource.addEventListener('message', function (e) {
-            var i, data, html = $('<table></table>');
+            var i,
+                data,
+                timeCell,
+                dataCell,
+                html = $('<table></table>');
 
             if (e.data) {
-                data = e.data.substring(6).split('\n').map(JSON.parse);
+                data = e.data.split('\n').map(JSON.parse);
                 for (i = 0; i < data.length; i++) {
-                    html.append('<tr><td>' + data[i].time + '</td><td>' + data[i].data + '</td></tr>');
+                    timeCell = $('<td />').text(data[i].time);
+                    dataCell = $('<td />').text(data[i].data);
+                    html.append($('<tr></tr>').append(timeCell).append(dataCell));
                 }
                 $buildStageOutput.html(html);
             }

@@ -48,7 +48,15 @@ namespace ThoughtWorks.CruiseControl.WebDashboard.MVC
             {
                 try
                 {
-                    response.Write("data: " + _getCurrentResponse() + "\n\n");
+                    var theResponse = _getCurrentResponse();
+                    if (theResponse == string.Empty)
+                    {
+                        response.Write("data:\n\n");
+                    }
+                    else
+                    {
+                        response.Write(theResponse + "\n\n");
+                    }
                     response.Flush();
                     Thread.Sleep(TimeSpan.FromSeconds(1));
                 }
