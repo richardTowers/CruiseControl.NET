@@ -123,12 +123,12 @@
             public void AddRow(ProjectGridRow row)
             {
                 this.Rows.Add(row);
-                if (row.BuildStatusHtmlColor == Color.Red.Name)
+                if (row.BuildStatusClass == ProjectGridRow.Classes.Failure)
                 {
                     this.CategoryColor = Color.Red.Name;
                     this.Display = true;
                 }
-                else if (row.BuildStatusHtmlColor == Color.Blue.Name
+                else if (row.BuildStatusClass == ProjectGridRow.Classes.Unknown
                          && this.CategoryColor != Color.Red.Name)
                 {
                     this.CategoryColor = Color.Blue.Name;

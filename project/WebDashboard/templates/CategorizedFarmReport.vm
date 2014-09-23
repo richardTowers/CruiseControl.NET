@@ -116,7 +116,7 @@
 				  </form>
 				</td>				
 				<td><a href="$row.Url" title="$row.Description">$row.Name</a></td>
-				<td class="$row.BuildStatusHtmlColor">$translations.Translate($row.BuildStatus)</td>
+				<td><span class="label label-$row.BuildStatusClass">$translations.translate($row.buildstatus)</span></td>
 				<td>$translations.Translate($row.LastBuildDate)</td>
 				<td>$translations.Translate($row.NextBuildTime)</td>
 				<td>$row.LastBuildLabel</td>

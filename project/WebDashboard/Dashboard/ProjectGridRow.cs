@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using ThoughtWorks.CruiseControl.Core.Reporting.Dashboard.Navigation;
 using ThoughtWorks.CruiseControl.Core.Util;
 using ThoughtWorks.CruiseControl.Remote;
@@ -13,6 +12,13 @@ namespace ThoughtWorks.CruiseControl.WebDashboard.Dashboard
         private readonly IServerSpecifier serverSpecifier;
         private readonly string url;
         private readonly string parametersUrl;
+
+        public static class Classes
+        {
+            public const string Success = "success";
+            public const string Unknown = "info";
+            public const string Failure = "danger";
+        }
 
         public ProjectGridRow(ProjectStatus status, IServerSpecifier serverSpecifier,
             string url, string parametersUrl, Translations translations)
@@ -54,9 +60,9 @@ namespace ThoughtWorks.CruiseControl.WebDashboard.Dashboard
             get { return status.BuildStatus.ToString(); }
         }
 
-        public string BuildStatusHtmlColor
+        public string BuildStatusClass
         {
-            get { return CalculateHtmlColor(status.BuildStatus); }
+            get { return CalculateClass(status.BuildStatus); }
         }
 
         public string LastBuildDate
@@ -171,19 +177,19 @@ namespace ThoughtWorks.CruiseControl.WebDashboard.Dashboard
             get { return serverSpecifier.AllowStartStopBuild && status.ShowStartStopButton; }
         }
 
-        private string CalculateHtmlColor(IntegrationStatus integrationStatus)
+        private string CalculateClass(IntegrationStatus integrationStatus)
         {
             if (integrationStatus == IntegrationStatus.Success)
             {
-                return Color.Green.Name;
+                return Classes.Success;
             }
             else if (integrationStatus == IntegrationStatus.Unknown)
             {
-                return Color.Blue.Name;
+                return Classes.Unknown;
             }
             else
             {
-                return Color.Red.Name;
+                return Classes.Failure;
             }
         }
 
