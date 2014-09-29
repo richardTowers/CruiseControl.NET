@@ -90,16 +90,29 @@
                                 <td>$projectGridRow.ServerName</td>
                                 #end
                                 <td>
-                                    #if ($projectGridRow.allowForceBuild)
-                                    #if($projectGridRow.ForceAbortBuildButtonValue == "Force")
-                                    <button class="btn btn-primary btn-xs" ng-click="forceBuild()">$translations.Translate($projectGridRow.ForceAbortBuildButtonValue)</button>
-                                    #else
-                                    <button class="btn btn-danger btn-xs">$translations.Translate($projectGridRow.ForceAbortBuildButtonValue)</button>
-                                    #end
-                                    #end
-                                    #if ($projectGridRow.AllowStartStopBuild)
-                                    <button class="btn btn-warning btn-xs">$translations.Translate($projectGridRow.StartStopButtonValue)</button>
-                                    #end
+                                    <form method="post" ng-controller="projectGridForm" cc-submit>
+                                        <input type="hidden" name="projectName" value="$projectGridRow.Name">
+                                        <input type="hidden" name="serverName" value="$projectGridRow.ServerName">
+                                        #if ($projectGridRow.allowForceBuild)
+                                            #if($projectGridRow.ForceAbortBuildButtonValue == "Force")
+                                            <input type="submit"
+                                                   class="btn btn-primary btn-xs"
+                                                   ng-click="checkParameters('$projectGridRow.ForceAbortBuildButtonName', '$projectGridRow.ForceAbortBuildButtonValue', '$projectGridRow.ParametersUrl')"
+                                                   value="$translations.Translate($projectGridRow.ForceAbortBuildButtonValue)">
+                                            #else
+                                            <input type="submit"
+                                                   class="btn btn-danger btn-xs"
+                                                   ng-click="ccSubmit({name: '$projectGridRow.ForceAbortBuildButtonName', value: '$projectGridRow.ForceAbortBuildButtonValue'});"
+                                                   value="$translations.Translate($projectGridRow.ForceAbortBuildButtonValue)">
+                                            #end
+                                        #end
+                                        #if ($projectGridRow.AllowStartStopBuild)
+                                            <input type="submit"
+                                                   class="btn btn-warning btn-xs"
+                                                   ng-click="ccSubmit({name: '$projectGridRow.StartStopButtonName', value: '$projectGridRow.StartStopButtonValue'});"
+                                                   value="$translations.Translate($projectGridRow.StartStopButtonValue)">
+                                        #end
+                                    </form>
                                 </td>
                             </tr>
                             #if ($projectGridRow.BuildStage.Length > 0)
