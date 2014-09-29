@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 	<head>
         <meta charset="utf-8">
@@ -7,14 +7,14 @@
 		<link rel="stylesheet" href="$applicationPath/Styles/css/dashboard.min.css" />
 		<link rel="shortcut icon" href="$applicationPath/AppIcon.ico" />
 	</head>
-	<body>
-        <div id="page-wrapper" class="active"> <!-- TODO: include JS to toggle the active class -->
+	<body ng-app="dash" ng-controller="main">
+        <div id="page-wrapper" ng-class="{active: sidebarActive}">
 
             <!-- *** SIDEBAR *** -->
             <div id="sidebar-wrapper">
                 <ul class="sidebar">
                     <li class="sidebar-main">
-                        <a href="#0">
+                        <a href="#0" ng-click="toggleSidebar()">
                             CCNet
                             <span class="menu-icon glyphicon glyphicon-transfer"></span>
                         </a>
@@ -76,17 +76,18 @@
 
                     <!-- *** FOOTER *** -->
 
-                    <!-- TODO: align and style the footer properly -->
                     <footer>
                         <!-- TODO: how useful is the page rendered time? Get rid of it? -->
-                        <p>$translations.Translate("PageRendered", $renderedAt)</p>
+                        <p class="pull-left">$translations.Translate("PageRendered", $renderedAt)</p>
 
                         <!-- TODO: the background colour on this image is wrong:  -->
-                        <a href="http://opensource.thoughtworks.com/"><img src="$applicationPath/images/tw_open_source_small.png" border="0" alt="ThoughtWorks Open Source" /></a>
+                        <a href="http://opensource.thoughtworks.com/" class="pull-right"><img src="$applicationPath/images/tw_open_source_small.png" border="0" alt="ThoughtWorks Open Source" /></a>
                     </footer>
 
                 </div>
             </div>
         </div>
+        <script src="$applicationPath/Styles/js/vendors.min.js"></script>
+        <script src="$applicationPath/Styles/js/dashboard.min.js"></script>
 	</body>
 </html>

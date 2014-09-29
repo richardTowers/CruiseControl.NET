@@ -13,7 +13,7 @@
 
 #foreach ($slink in $serverlinks)
 <li class="sidebar-list">
-    <a href="$slink.Url" class="$slink.LinkClass">$slink.Text</a>
+    <a href="$slink.Url" class="$slink.LinkClass">$slink.Text<span class="menu-icon fa fa-desktop"></span></a>
 </li>
 #end
 
