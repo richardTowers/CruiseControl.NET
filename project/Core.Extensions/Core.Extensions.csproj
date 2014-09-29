@@ -134,7 +134,7 @@
   -->
   <PropertyGroup>
     <PostBuildEvent Condition=" '$(OS)' != 'Unix' ">
-      if not "$(ConfigurationName)" == "Build" xcopy /Y "$(TargetPath)" "$(SolutionDir)console/bin/$(ConfigurationName)/"
+      if not "$(ConfigurationName)" == "Build" xcopy /Y "$(TargetPath)" "$(SolutionDir)console\bin\$(ConfigurationName)\"
     </PostBuildEvent>
     <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">
       if [ "$(ConfigurationName)" != "Build" ]; then
