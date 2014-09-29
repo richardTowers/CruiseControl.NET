@@ -127,7 +127,7 @@ namespace ThoughtWorks.CruiseControl.UnitTests.WebDashboard.Dashboard
 
 			// Verify
 			Assert.AreEqual("Success", rows[0].BuildStatus);
-			Assert.AreEqual(Color.Green.Name, rows[0].BuildStatusHtmlColor);
+			Assert.AreEqual(ProjectGridRow.Classes.Success, rows[0].BuildStatusClass);
 
 			// Setup
 			statusses = new ProjectStatusOnServer[]
@@ -141,7 +141,7 @@ namespace ThoughtWorks.CruiseControl.UnitTests.WebDashboard.Dashboard
 
 			// Verify
 			Assert.AreEqual("Failure", rows[0].BuildStatus);
-			Assert.AreEqual(Color.Red.Name, rows[0].BuildStatusHtmlColor);
+            Assert.AreEqual(ProjectGridRow.Classes.Failure, rows[0].BuildStatusClass);
 
 			// Setup
 			statusses = new ProjectStatusOnServer[]
@@ -155,7 +155,7 @@ namespace ThoughtWorks.CruiseControl.UnitTests.WebDashboard.Dashboard
 
 			// Verify
 			Assert.AreEqual("Unknown", rows[0].BuildStatus);
-			Assert.AreEqual(Color.Blue.Name, rows[0].BuildStatusHtmlColor);
+			Assert.AreEqual(ProjectGridRow.Classes.Unknown, rows[0].BuildStatusClass);
 
 			// Setup
 			statusses = new ProjectStatusOnServer[]
@@ -169,7 +169,7 @@ namespace ThoughtWorks.CruiseControl.UnitTests.WebDashboard.Dashboard
 
 			// Verify
 			Assert.AreEqual("Exception", rows[0].BuildStatus);
-			Assert.AreEqual(Color.Red.Name, rows[0].BuildStatusHtmlColor);
+            Assert.AreEqual(ProjectGridRow.Classes.Failure, rows[0].BuildStatusClass);
 
 			VerifyAll();
 		}
