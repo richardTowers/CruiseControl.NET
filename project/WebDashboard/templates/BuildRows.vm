@@ -1,5 +1,7 @@
 <!-- BuildRows.vm: Start -->
 #foreach ($link in $links)
-<tr><td><a href="$link.Url" class="$link.LinkClass">$translations.Translate($link.Text)</a></td></tr>
+<li class="sidebar-list slim">
+    <a href="$link.Url" class="$link.LinkClass">$translations.Translate($link.Text)</a>
+</li>
 #end
 <!-- BuildRows.vm: End -->

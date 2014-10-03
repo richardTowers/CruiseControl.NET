@@ -1,13 +1,19 @@
 <!-- BuildSideBar.vm: Start -->
-<table width="100%">
-	<tr><td><a href="$latestLink.Url">$translations.Translate("Latest")</a></td></tr>
-	<tr><td><a href="$nextLink.Url">$translations.Translate("Next")</a></td></tr>
-	<tr><td><a href="$previousLink.Url">$translations.Translate("Previous")</a></td></tr>
-	<tr><td>&nbsp;</td></tr>
-	#foreach ($link in $links)
-	<tr><td><a href="$link.Url" class="$link.LinkClass">$translations.Translate($link.Text)</a></td></tr>
-	#end
-	<tr><td>&nbsp;</td></tr>
-	<tr><td>$recentBuildsTable</td></tr>
-</table>
+<li class="sidebar-list">
+    <a href="$latestLink.Url">$translations.Translate("Latest") <span class="menu-icon fa fa-angle-double-right"></span></a>
+</li>
+<li class="sidebar-list">
+    <a href="$nextLink.Url">$translations.Translate("Next") <span class="menu-icon fa fa-angle-right"></span></a>
+</li>
+<li class="sidebar-list">
+    <a href="$previousLink.Url">$translations.Translate("Previous")<span class="menu-icon fa fa-angle-left"></span></a>
+</li>
+
+#foreach ($link in $links)
+<li class="sidebar-list">
+    <a href="$link.Url" class="$link.LinkClass">$translations.Translate($link.Text)</a>
+</li>
+#end
+
+$recentBuildsTable
 <!-- BuildSideBar.vm: End -->
