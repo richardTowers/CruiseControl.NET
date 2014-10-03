@@ -1,7 +1,5 @@
 <!-- ProjectGrid.vm: Start -->
 
-<!-- TODO: parameter check. -->
-
 <!-- TODO: refresh button? Or replace with events sent from the server? -->
 
 #if ($forceBuildMessage.Length > 0)
