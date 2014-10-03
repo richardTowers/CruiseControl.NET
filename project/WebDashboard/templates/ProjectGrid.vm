@@ -5,11 +5,16 @@
 <!-- TODO: refresh button? Or replace with events sent from the server? -->
 
 #if ($forceBuildMessage.Length > 0)
-<p id="StatusLabel">
-    $translations.Translate($forceBuildMessage)
-</p>
+<div class="row" ng-controller="projectGridExceptions">
+    <div class="col-lg-12">
+        <alert type="info" close="closeAlert(0)" ng-show="shouldShowAlert(0)">
+            $translations.Translate($forceBuildMessage)
+        </alert>
+    </div>
+</div>
 #end
 
+#if ($exceptions.Length > 0)
 <div class="row" ng-controller="projectGridExceptions">
     <div class="col-lg-12">
         #set ($counter = 0)
@@ -22,6 +27,7 @@
         #end
     </div>
 </div>
+#end
 
 
 #if ($projectGrid.Length > 0)
